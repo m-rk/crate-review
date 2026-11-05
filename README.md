@@ -1,29 +1,30 @@
 # Crate Review
 
-A local review page for comparing possible duplicate music tracks using Rekordbox metadata and audio signatures. The page stores review decisions in the browser and exports approved actions; it does not modify Rekordbox, Music, or audio files.
+Two copies of a tune can hide very different stories: one has your hot cues, one has the better audio file, and one might be in a set playlist. **Crate Review puts the evidence side by side so you can clear duplicates without binning the copy you actually play.**
 
-## Generate a local review
+<img src="assets/logo.png" alt="Crate Review logo: two overlapping records" width="360">
 
-Requirements: Python 3 and `ffmpeg` on macOS, plus a Rekordbox XML export and the referenced music files.
+## Make the call with your ears and your prep
+
+- **Audition both copies.** Play and seek through compact audio-derived waveforms with Rekordbox hot cues, memory cues, and loops marked in place.
+- **See what matters.** Compare bitrate, length, key, BPM, cue data, and playlist use. Matching properties stay out of the way until you expand them.
+- **Trust the evidence.** Suggestions use audio comparisons alongside track details, not a matching title alone. Distinct edits and remixes deserve their own place in the crate.
+- **Stay in control.** Choose which file to keep, lock your decision, and download an approval plan. The review page does not change your music or Rekordbox library.
+
+## Start a review
+
+Crate Review currently runs locally on macOS. It reads a Rekordbox XML export and scans your Apple Music media folder by default. Install Python 3 and `ffmpeg`, export your collection from Rekordbox, then run:
 
 ```sh
 python3 build_duplicate_sweep.py
 ```
 
-By default, the generator looks for the XML at `~/Documents/rekordbox/rekordbox.xml` and the library at `~/Music/Music/Media.localized/Music`. Override either with `REKORDBOX_XML` or `MUSIC_LIBRARY_ROOT`, or use `--xml` and `--library-root`.
+Open `index.html` in your browser. The generator looks for `~/Documents/rekordbox/rekordbox.xml` and `~/Music/Music/Media.localized/Music` by default. Use `--xml` and `--library-root` if your files live elsewhere.
 
-If the XML does not identify which playlists are intelligent, list their names in `.local/playlist-types.json`:
+Rekordbox XML may not say which playlists are intelligent. If needed, put their names in the local `.local/playlist-types.json` file:
 
 ```json
 {"intelligentPlaylists": ["Example automatic list"], "intelligentFolders": ["Example automatic folder"]}
 ```
 
-This file stays local. Set `REKORDBOX_PLAYLIST_TYPES` to use a different config path.
-
-The generator writes `duplicate-sweep.json`, `sweep-top50.js`, and `waveforms.js` beside the script. These files contain private library paths, playlist names, cue data, and audio fingerprints; they are ignored by Git and should not be published.
-
-Open `index.html` in a browser after generation. If no local sweep data exists, the page opens with an empty candidate list.
-
-## Decisions
-
-Each track can be marked to keep or delete. Locking a pair records the choice in browser storage. Downloading approved decisions exports a JSON plan; it does not execute the requested library or file operations. Process those actions separately after reviewing the exported plan.
+Your candidate report, waveforms, playlist names, file paths, and approval exports stay local and are ignored by Git. **Downloading approvals records your choices; it does not delete anything.**
