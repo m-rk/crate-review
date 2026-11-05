@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111511">
+  <title>Crate Review — Duplicate decisions</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>window.TRACK_VISUALS = {}; window.DUPLICATE_SWEEP_TOP50 = [];</script>
+  <script src="waveforms.js" defer></script>
+  <script src="sweep-top50.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Crate Review home"><span class="brand-mark">CR</span><span>crate review</span></a>
+    <div class="top-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme"><span aria-hidden="true">◐</span></button>
+      <button class="button button-quiet" id="import-button" type="button">Import decisions</button>
+      <button class="button button-primary" id="export-button" type="button" disabled>Download approved</button>
+      <input id="import-file" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">LIBRARY CLEANUP · REVIEW MODE</p>
+        <h1 id="page-title">Duplicate decisions</h1>
+        <p class="intro-copy">Review the differences. Choose what to keep, then lock the pair.</p>
+      </div>
+    </section>
+
+    <section class="summary" aria-label="Review progress">
+      <div class="summary-main"><span class="summary-count" id="progress-count">0 of 2</span><span class="summary-label">decisions confirmed</span><div class="progress-track"><span id="progress-bar"></span></div></div>
+      <div class="summary-stat"><strong id="pending-count">2</strong><span>to review</span></div>
+      <div class="summary-stat"><strong id="approved-count">0</strong><span>approved</span></div>
+    </section>
+
+    <div class="list-toolbar">
+      <div class="filters" role="group" aria-label="Filter candidates">
+        <button class="filter-button active" data-filter="all" aria-pressed="true">All <span id="all-count">2</span></button>
+        <button class="filter-button" data-filter="pending" aria-pressed="false">To review <span id="pending-filter-count">2</span></button>
+        <button class="filter-button" data-filter="approved" aria-pressed="false">Confirmed <span id="approved-filter-count">0</span></button>
+      </div>
+      <p class="autosave"><span class="save-dot"></span><span id="save-status">Saved in this browser</span></p>
+    </div>
+
+    <section id="candidate-list" class="candidate-list" aria-label="Duplicate candidates"></section>
+
+    <footer class="page-footer">
+      <div><span>Row values: quality · length · key · BPM · cues · playlists; brighter values differ</span><span>A–H hot cues · M memory cues · L loops</span></div>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+</body>
+</html>

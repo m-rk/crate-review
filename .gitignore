@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+
+# Generated Rekordbox and music-library data: keep these local.
+duplicate-sweep.json
+sweep-top50.js
+waveforms.js
+extra-candidates.js
+
+# Local approvals and exports.
+crate-review-approved.json
+crate-review-decisions*.json
+
+# Private processing records and restore paths.
+.local/
