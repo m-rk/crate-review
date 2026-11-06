@@ -1,7 +1,10 @@
 const CANDIDATES = window.DUPLICATE_SWEEP_TOP50 || [];
 
 const STORAGE_KEY = 'crate-review-decisions-v3-post-2026-11-06';
-const THEME_KEY = 'crate-review-theme-v1';
+const THEME_KEY = 'crate-review-theme-v2';
+const THEME_MODES = ['system', 'light', 'dark'];
+const THEME_ICONS = { system: '◐', light: '☀', dark: '☾' };
+const systemLight = matchMedia('(prefers-color-scheme: light)');
 let decisions = readStored();
 let activeFilter = 'all';
 let toastTimer;
@@ -366,9 +369,24 @@ document.querySelectorAll('.filter-button').forEach(button => button.addEventLis
 document.querySelector('#export-button').addEventListener('click', exportApproved);
 document.querySelector('#import-button').addEventListener('click', () => document.querySelector('#import-file').click());
 document.querySelector('#import-file').addEventListener('change', event => { if (event.target.files[0]) importDecisions(event.target.files[0]); event.target.value = ''; });
+function setTheme(mode, persist = true) {
+  document.documentElement.dataset.theme = mode;
+  if (persist) localStorage.setItem(THEME_KEY, mode);
+  const next = THEME_MODES[(THEME_MODES.indexOf(mode) + 1) % THEME_MODES.length];
+  const button = document.querySelector('#theme-toggle');
+  button.querySelector('span').textContent = THEME_ICONS[mode];
+  button.setAttribute('aria-label', `Theme: ${mode}. Switch to ${next}`);
+  button.title = `Theme: ${mode} · click for ${next}`;
+  document.querySelector('meta[name="theme-color"]').content =
+    mode === 'light' || (mode === 'system' && systemLight.matches) ? '#f3f4ef' : '#111511';
+}
 document.querySelector('#theme-toggle').addEventListener('click', () => {
-  const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-  document.documentElement.dataset.theme = next; localStorage.setItem(THEME_KEY, next);
+  const current = document.documentElement.dataset.theme;
+  setTheme(THEME_MODES[(THEME_MODES.indexOf(current) + 1) % THEME_MODES.length]);
 });
-document.documentElement.dataset.theme = localStorage.getItem(THEME_KEY) || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+systemLight.addEventListener('change', () => {
+  if (document.documentElement.dataset.theme === 'system') setTheme('system', false);
+});
+const storedTheme = localStorage.getItem(THEME_KEY);
+setTheme(THEME_MODES.includes(storedTheme) ? storedTheme : 'system', false);
 render();

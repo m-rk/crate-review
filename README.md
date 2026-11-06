@@ -11,6 +11,18 @@ Two copies of a tune can hide very different stories: one has your hot cues, one
 - **Trust the evidence.** Suggestions use audio comparisons alongside track details, not a matching title alone. Distinct edits and remixes deserve their own place in the crate.
 - **Stay in control.** Choose which file to keep, lock your decision, and download an approval plan. The review page does not change your music or Rekordbox library.
 
+## See the review
+
+These screenshots use fictional tracks, playlists, and waveforms. The decisions show the sort of trade-offs DJs run into: a stronger copy of “One More Track”, an album copy of “Taxi Meter”, and two edits of “Five More Minutes” that should both survive.
+
+**Light mode**
+
+![Crate Review in light mode with three fictional duplicate comparisons](assets/screenshot-light.jpg)
+
+**Dark mode**
+
+![Crate Review in dark mode with the same fictional duplicate comparisons](assets/screenshot-dark.jpg)
+
 ## Start a review
 
 Crate Review currently runs locally on macOS. It reads a Rekordbox XML export and scans your Apple Music media folder by default. Install Python 3 and `ffmpeg`, export your collection from Rekordbox, then run:

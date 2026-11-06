@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111511">
   <title>Crate Review — Duplicate decisions</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=5">
   <script>window.TRACK_VISUALS = {}; window.DUPLICATE_SWEEP_TOP50 = [];</script>
   <script src="waveforms.js" defer></script>
   <script src="sweep-top50.js" defer></script>
@@ -13,9 +13,9 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="Crate Review home"><span class="brand-mark">CR</span><span>crate review</span></a>
+    <a class="brand" href="#top" aria-label="Crate Review home"><img class="brand-logo" src="assets/logo.png?v=2" alt="" width="66" height="44"><span class="brand-wordmark"><span>crate</span> <span class="brand-review">review</span></span></a>
     <div class="top-actions">
-      <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme"><span aria-hidden="true">◐</span></button>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Theme: system. Switch to light" title="Theme: system · click for light"><span aria-hidden="true">◐</span></button>
       <button class="button button-quiet" id="import-button" type="button">Import decisions</button>
       <button class="button button-primary" id="export-button" type="button" disabled>Download approved</button>
       <input id="import-file" type="file" accept="application/json,.json" hidden>
