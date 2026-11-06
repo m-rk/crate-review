@@ -1,4 +1,4 @@
-# Crate Review
+# crate review
 
 Two copies of a tune can hide very different stories: one has your hot cues, one has the better audio file, and one might be in a set playlist. **Crate Review puts the evidence side by side so you can clear duplicates without binning the copy you actually play.**
 
